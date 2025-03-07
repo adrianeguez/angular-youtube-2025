@@ -31,12 +31,11 @@ interface Subscription {
     MenuFooterComponent],
   template: `
   <div>
+    <div class="menu-overlay" [class.active]="menuService.isOpen" (click)="closeMenu()"></div>
 
-  <div class="menu-overlay" [class.active]="menuService.isOpen" (click)="closeMenu()"></div>
-
-  <nav [class.open]="menuService.isOpen" 
-        class="side-menu w-64 h-full bg-white dark:bg-zinc-900 fixed left-0 top-14 p-3">
-      <div class="menu-header flex items-center gap-4 mb-4">
+    <nav [class.open]="menuService.isOpen" 
+        class="side-menu w-64 h-full bg-white dark:bg-zinc-900 fixed left-0 top-14 flex flex-col">
+      <div class="menu-header flex items-center gap-4 p-3">
         <button mat-icon-button (click)="closeMenu()">
           <mat-icon>close</mat-icon>
         </button>
@@ -54,73 +53,75 @@ interface Subscription {
         </a>
       </div>
       
-      <div class="menu-items">
-        <app-menu-item
-          *ngFor="let item of mainMenuItems"
-          [icon]="item.icon"
-          [label]="item.label"
-          [isActive]="activeItem === item.id"
-        ></app-menu-item>
-
-        <div class="menu-section">
-          <div class="section-title">You</div>
+      <div class="menu-items flex-1 overflow-y-auto p-3">
+        <div class="menu-items">
           <app-menu-item
-            *ngFor="let item of youMenuItems"
+            *ngFor="let item of mainMenuItems"
             [icon]="item.icon"
             [label]="item.label"
             [isActive]="activeItem === item.id"
           ></app-menu-item>
-        </div>
 
-        <div class="menu-section">
-          <div class="section-title">Subscriptions</div>
-          <app-subscription-item
-            *ngFor="let sub of displayedSubscriptions()"
-            [channelName]="sub.channelName"
-            [avatarUrl]="sub.avatarUrl"
-            [isLive]="sub.isLive"
-            [hasNewContent]="sub.hasNewContent"
-            [isActive]="activeItem === sub.channelName"
-          ></app-subscription-item>
-          
-          <app-menu-item
-            *ngIf="subscriptions.length > 4"
-            icon="{{ showAllSubscriptions ? 'expand_less' : 'expand_more' }}"
-            label="Show {{ showAllSubscriptions ? 'less' : 'more' }}"
-            (click)="toggleShowMore()"
-          ></app-menu-item>
-        </div>
+          <div class="menu-section">
+            <div class="section-title">You</div>
+            <app-menu-item
+              *ngFor="let item of youMenuItems"
+              [icon]="item.icon"
+              [label]="item.label"
+              [isActive]="activeItem === item.id"
+            ></app-menu-item>
+          </div>
 
-        <div class="menu-section">
-          <div class="section-title">Explore</div>
-          <app-menu-item
-            *ngFor="let item of exploreMenuItems"
-            [icon]="item.icon"
-            [label]="item.label"
-            [isActive]="activeItem === item.id"
-          ></app-menu-item>
-        </div>
+          <div class="menu-section">
+            <div class="section-title">Subscriptions</div>
+            <app-subscription-item
+              *ngFor="let sub of displayedSubscriptions()"
+              [channelName]="sub.channelName"
+              [avatarUrl]="sub.avatarUrl"
+              [isLive]="sub.isLive"
+              [hasNewContent]="sub.hasNewContent"
+              [isActive]="activeItem === sub.channelName"
+            ></app-subscription-item>
+            
+            <app-menu-item
+              *ngIf="subscriptions.length > 4"
+              icon="{{ showAllSubscriptions ? 'expand_less' : 'expand_more' }}"
+              label="Show {{ showAllSubscriptions ? 'less' : 'more' }}"
+              (click)="toggleShowMore()"
+            ></app-menu-item>
+          </div>
 
-        <div class="menu-section">
-          <div class="section-title">More from YouTube</div>
-          <app-menu-item
-            *ngFor="let item of moreFromYoutubeItems"
-            [icon]="item.icon"
-            [label]="item.label"
-            [isActive]="activeItem === item.id"
-          ></app-menu-item>
-        </div>
+          <div class="menu-section">
+            <div class="section-title">Explore</div>
+            <app-menu-item
+              *ngFor="let item of exploreMenuItems"
+              [icon]="item.icon"
+              [label]="item.label"
+              [isActive]="activeItem === item.id"
+            ></app-menu-item>
+          </div>
 
-        <div class="menu-section">
-          <app-menu-item
-            *ngFor="let item of settingsItems"
-            [icon]="item.icon"
-            [label]="item.label"
-            [isActive]="activeItem === item.id"
-          ></app-menu-item>
-        </div>
+          <div class="menu-section">
+            <div class="section-title">More from YouTube</div>
+            <app-menu-item
+              *ngFor="let item of moreFromYoutubeItems"
+              [icon]="item.icon"
+              [label]="item.label"
+              [isActive]="activeItem === item.id"
+            ></app-menu-item>
+          </div>
 
-        <app-menu-footer></app-menu-footer>
+          <div class="menu-section">
+            <app-menu-item
+              *ngFor="let item of settingsItems"
+              [icon]="item.icon"
+              [label]="item.label"
+              [isActive]="activeItem === item.id"
+            ></app-menu-item>
+          </div>
+
+          <app-menu-footer></app-menu-footer>
+        </div>
       </div>
     </nav>
   </div>
@@ -151,13 +152,37 @@ interface Subscription {
       transform: translateX(-100%);
       transition: transform 0.3s ease;
       z-index: 999;
-      overflow-y: auto;
+      overflow: hidden;
       @apply dark:bg-zinc-900;
 
       &.open {
         transform: translateX(0);
         z-index: 1000;
       }
+    }
+
+    .menu-items {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        border: 2px solid transparent;
+      }
+    }
+
+    :host {
+      display: block;
     }
   `
 })
