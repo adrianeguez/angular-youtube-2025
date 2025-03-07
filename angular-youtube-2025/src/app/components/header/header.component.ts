@@ -21,7 +21,7 @@ import { ThemeService } from '../../services/theme.service';
     HamburgerMenuComponent
   ],
   template: `
-    <header class="fixed top-0 left-0 right-0 h-14 flex items-center justify-between px-4 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700">
+    <header class="header fixed top-0 left-0 right-0 h-14 flex items-center justify-between px-4 bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-700">
       <div class="flex items-center gap-4">
         <app-hamburger-menu></app-hamburger-menu>
         <a href="/" class="flex items-center">
@@ -89,6 +89,9 @@ import { ThemeService } from '../../services/theme.service';
   styles: `
     .create-button {
       max-height: 30px;
+    }
+    .header{
+      z-index: 1001;
     }
   `
 })

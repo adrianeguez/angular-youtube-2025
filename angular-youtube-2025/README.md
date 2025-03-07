@@ -1,59 +1,51 @@
-# AngularYoutube2025
+## Youtube Clone
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+This is a clone of the Youtube website built with Angular.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- [x] Theme toggle (light/dark)
+- [x] Search bar (search and search icon display only on mobile)
+- [x] Notifications (9+ notifications badge)
+- [x] Account (profile picture)
+- [x] Create button (create icon and text)
+- [x] Hamburger menu (open and close)
+- [x] Menu (display only on mobile) 
+- [x] Menu items (home, shorts, subscriptions, library, history, watch later, liked videos, playlists, settings, help, feedback)
+- [x] Menu footer (about, press, copyright, contact us, creators, advertise, developers, terms, privacy, policy and safety, how youtube works, test new features)
+- [x] Chips nav (all, videos, shorts, playlists, channels, community, live, movies, tv series, gaming, music, news, fashion, beauty, comedy, education, science, technology, cooking, travel, sports, gaming, music, news, fashion, beauty, comedy, education, science, technology, cooking, travel, sports)
+- [x] Video card (thumbnail, title, channel name, views, uploaded at, duration, category)
+- [x] Shorts section (shorts title, views, thumbnail)
+- [x] Subscription item (avatar, channel name, new content icon, live icon)
+- [x] Header (logo, search bar, theme toggle, create button, notifications, account)
+- [x] Main content (chips nav, video cards, shorts section)
+- [x] Footer (home, shorts, subscriptions, library, history, watch later, liked videos, playlists, settings, help, feedback)
 
-```bash
-ng serve
-```
+## Important feature notes
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- The number of videos displayed depends on the resolution of the screen, displaying only complete rows.
+- The video card is responsive and can be displayed on all devices.
+- The shorts section is responsive and can be displayed on all devices, the number of shorts depends on the resolution of the screen.
+- The subscription item is responsive and can be displayed on all devices.
+- The header is responsive and can be displayed on all devices.
+- The main content is responsive and can be displayed on all devices.
 
-## Code scaffolding
+## Technologies used
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Angular
+- Tailwind CSS
+- Angular Material
+- TypeScript
+- HTML
+- CSS
+- SCSS
 
-```bash
-ng generate component component-name
-```
+## How to run the project
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm start` or `ng serve`
 
-```bash
-ng generate --help
-```
+## How to build the project
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Run `npm run build`
