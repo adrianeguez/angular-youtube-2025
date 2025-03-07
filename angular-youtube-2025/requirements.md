@@ -1,0 +1,1 @@
+I want to re create the main youtube page using angular and typescript. This page need to be responsive and mobile-friendly.
