@@ -60,7 +60,8 @@
               "src/styles.scss",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "baseHref": "/angular-youtube-2025/"
           },
           "configurations": {
             "production": {

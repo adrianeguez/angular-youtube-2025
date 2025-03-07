@@ -49,3 +49,7 @@ This is a clone of the Youtube website built with Angular.
 ## How to build the project
 
 1. Run `npm run build`
+
+## How to deploy the project
+
+1. Run `npm run deploy`
